@@ -1,11 +1,15 @@
 #include <stdio.h>
-
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
 	char j = 'a'
 	
 	while (j <= 'z')
-		putchar("%c", j);
+		putchar("%c\n", j);
 		j++;
 	return (0);
 }
