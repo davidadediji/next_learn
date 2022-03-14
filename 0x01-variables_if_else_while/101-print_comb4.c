@@ -6,9 +6,7 @@
 int main(void)
 {
 	int i;
-	
 	int j;
-
 	int k;
 
 	for (i = '0'; i < '8'; i++)
@@ -28,6 +26,5 @@ int main(void)
 		}
 	}
 	putchar('\n');
-
 	return (0);
 }
