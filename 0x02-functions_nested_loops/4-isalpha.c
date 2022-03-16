@@ -9,7 +9,7 @@ int _isalpha(int c)
 	int i = 'A';
 	int j = 'a';
 
-	if (i <= 'Z' && j <= 'z')
+	if (i <= c && j <= c)
 	{
 		return (1);
 	}
