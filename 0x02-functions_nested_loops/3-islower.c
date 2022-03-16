@@ -4,9 +4,11 @@
  *
  * Return: Always 1 or 0
  */
-int _islower(int c)
+int _islower(char c)
 {
-	i = _islower(int c);
+	char i;
+
+	i = _islower(char c);
 
 	if (i >= 'a' && i <= 'z')
 	{
