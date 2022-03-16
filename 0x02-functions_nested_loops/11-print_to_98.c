@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "main.h"
 /**
  * print_to_98 - function to print
@@ -12,14 +13,11 @@ void print_to_98(int n)
 		{
 			if (n != 98)
 			{
-				_putchar(n + '0');
-				_putchar(',');
-				_putchar(' ');
+				printf("%d, ",i);
 			}
 			else if (n == 98)
 			{
-				_putchar(n + '0');
-				_putchar('\n');
+				printf("%d\n", i);
 			}
 		}
 	}
@@ -29,14 +27,11 @@ void print_to_98(int n)
 		{
 			if (n != 98)
 			{
-				_putchar(n + '0');
-				_putchar(',');
-				_putchar(' ');
+				printf("%d, ",i);
 			}
 			else if (n == 98)
 			{
-				_putchar(n + '0');
-				_putchar('\n');
+				printf("%d\n", i);
 			}
 		}
 	}
