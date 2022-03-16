@@ -4,11 +4,11 @@
  *
  * Return: Always 1 or 0
  */
-int _islower(char c)
+int _islower(int c)
 {
-	char c;
+	int c;
 
-	if (i >= 'a' && i <= 'z')
+	if (c >= 'a' && c <= 'z')
 	{
 		return (1);
 	}
