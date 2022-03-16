@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * print_last_digit - function to print the last number
  * @c: input accepted
