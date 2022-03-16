@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * print_sign - To print sign of a number.
- *@n - type to accept
+ *@n: - type to accept
  * Return: -1, 0 +1
  */
 int print_sign(int n)
