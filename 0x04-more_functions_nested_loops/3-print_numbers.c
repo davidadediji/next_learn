@@ -2,9 +2,8 @@
 
 /**
  * print_numbers - print numbers
- * Return: Always 0 or 1
+ * followed by a new line
  */
-
 void print_numbers(void)
 {
 	int i;
