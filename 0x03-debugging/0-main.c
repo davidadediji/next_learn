@@ -3,6 +3,7 @@
  * main - tests whether a function is negative or positive
  * Return:0
  */
+
 int main(void)
 {
 	int i = 0;
