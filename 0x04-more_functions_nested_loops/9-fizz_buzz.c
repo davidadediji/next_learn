@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "main.h"
 /**
  * main - checks for fizz buzz numbers
  * Return:0
