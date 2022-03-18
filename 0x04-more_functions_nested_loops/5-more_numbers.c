@@ -23,7 +23,7 @@ void more_numbers(void)
 				column++;
 			}
 			_putchar('\n');
-			row++;
 		}
+		row++;
 	}
 }
