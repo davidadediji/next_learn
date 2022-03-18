@@ -20,10 +20,11 @@ void more_numbers(void)
 			if (column >= 10)
 			{
 				_putchar(column / 10 + '0');
-				column++;
 			}
-			_putchar('\n');
+			_putchar(column % 10 + '0');
+			column++;
 		}
+		putchar('\n');
 		row++;
 	}
 }
