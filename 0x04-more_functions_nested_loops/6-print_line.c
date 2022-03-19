@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- *print_diagonal - function to print a diagonal
+ *print_line - function to print a diagonal
  * @n:variable required
  */
 
-void print_diagonal(int n)
+void print_line(int n)
 {
 	int i;
 
