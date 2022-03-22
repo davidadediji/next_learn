@@ -1,19 +1,30 @@
 #include "main.h"
 
-/**
- * _puts - a function that prints out a string, followed by
- * a new line
- * @str : string character variable.
- *
- * Return - nothing.
- */
-void _puts(char *str)
-{
-	int i;
+#include "main.h"
 
-	for (i = 0; str[i] != '\0'; i++)
+/**
+ * print_rev - a function that prints a string in reverse order
+ * @s: string character to be printed.
+ *
+ * Returns - nothing
+ */
+
+void print_rev(char *s)
+{
+	int i, j;
+
+	i = 0;
+	while (s[i] != '\0')
 	{
-		_putchar(str[i]);
+		i++;
 	}
-	_putchar('\n');
+
+	j = i - 1;
+	while (s[j])
+	{
+		_putchar(s[j]);
+		j--;
+	}
+	_putchar(10);
+
 }
