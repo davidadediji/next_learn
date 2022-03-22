@@ -11,31 +11,20 @@
 
 int _atoi(char *s)
 {
-	int sign = 1;
-	unsigned int total = 0;
-	char null_flag = 0;
+	int sign = 1, i = 0;
+	unsigned int res = 0;
 
-	while (*s)
+	while (!(s[i] <= '9' && s[i] >= '0') && s[i] != '\0')
 	{
-		if (*s == '-')
-		{
-			sign *= 1;
-		}
-		if (*s >= '0' && *s <= '9')
-		{
-			null_flag = 1;
-			total = total * 10 + *s - '0';
-		}
-		else if (null_flag)
-		{
-			break;
-		}
-		s++;
+		if (s[i] == '-')
+			sign *= -1;
+		i++;
 	}
-
-	if (sign < 0)
+	while (s[i] <= '9' && (s[i] >= '0' && s[i] != '\0'))
 	{
-		total = (-total);
+		res = (res * 10) + (s[i] - '0');
+		i++;
 	}
-	return (total);
+	res *= sign;
+	return (res);
 }
