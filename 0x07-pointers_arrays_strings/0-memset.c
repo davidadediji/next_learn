@@ -1,9 +1,10 @@
 #include "main.h"
 /**
- * @*s:array
+ * *_memset - function fills the first n bytes of the memory area poi
+ * @s:array
  * @b:address of memory you want to print
- * @n: siz of memory to print
- * return s
+ * @n: size of memory to print
+ * Return:s
  */
 char *_memset(char *s, char b, unsigned int n)
 {
