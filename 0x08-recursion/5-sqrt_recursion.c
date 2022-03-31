@@ -1,5 +1,8 @@
 #include "main.h"
 /**
+ *@a: interger value
+ *@b: interger value
+ *check_root - function to check the root of a number
  *_sqrt_recursion - function to print a string in reverse
  *@n:unsigned character
  *Return:int-type
