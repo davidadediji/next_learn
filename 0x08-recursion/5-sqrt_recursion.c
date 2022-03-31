@@ -11,12 +11,12 @@ int check_root(int a, int b)
 		return (a);
 	if(a * a > b)
 		return (-1);
-	return (check(a + 1, b));
+	return (check_root(a + 1, b));
 }
 int _sqrt_recursion(int n)
 {
 
 	if (n < 0 || n == 0 || n == 1)
 		return (0);
-	return (check(1, n));
+	return (check_root(1, n));
 }
