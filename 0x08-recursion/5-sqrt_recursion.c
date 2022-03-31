@@ -10,7 +10,7 @@
  */
 int check_root(int a, int b)
 {
-	if (a + a == b)
+	if (a * a == b)
 		return (a);
 	if (a * a > b)
 		return (-1);
