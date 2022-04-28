@@ -1,154 +1,88 @@
 #include "lists.h"
+#include <stdio.h>
 
-
-uli hash(uli x);
-ht_t *ht_create(void);
-entry_t *ht_pair(const uli key, const uli value);
-void ht_set(ht_t *hashtable, const uli key,  const uli value);
-uli ht_get(ht_t *hashtable, const uli key);
+size_t looped_listint_len(const listint_t *head);
+size_t print_listint_safe(const listint_t *head);
 
 /**
- * print_listint_safe - Prints all the elements of a linked list
- * @head: Head of the linked list
+ * looped_listint_len - Counts the number of unique nodes
+ *                      in a looped listint_t linked list.
+ * @head: A pointer to the head of the listint_t to check.
  *
- * Return: Number of nodes (size_t)
+ * Return: If the list is not looped - 0.
+ *         Otherwise - the number of unique nodes in the list.
  */
-size_t print_listint_safe(const listint_t *head)
+size_t looped_listint_len(const listint_t *head)
 {
-	const listint_t *temp = head;
-	uli add;
-	size_t i = 0;
-	ht_t *ht = ht_create();
+	const listint_t *tortoise, *hare;
+	size_t nodes = 1;
 
-	if (temp == NULL)
-		exit(98);
-
-	while (head != NULL)
-	{
-		add = (uli) head;
-		i++;
-		if (add != ht_get(ht, add))
-		{
-			printf("[%p] %d\n", (void *)head, head->n);
-		}
-		else
-		{
-			printf("-> [%p] %d\n", (void *)head, head->n);
-			break;
-		}
-		ht_set(ht, add, add);
-		head = head->next;
-	}
-	return (i);
-}
-
-/**
- * hash - Hash function for the key
- * @x: unsigned long int key
- *
- * Return: hashed key
- */
-uli hash(uli x)
-{
-	x = ((x >> 16) ^ x) * 0x45d9f3b;
-	x = ((x >> 16) ^ x) * 0x45d9f3b;
-	x = (x >> 16) ^ x;
-	x = x % TABLE_SIZE;
-
-	return (x);
-}
-
-/**
- * ht_create - Create a hashtable
- * Return: hashtable with all the entries NULL
- */
-ht_t *ht_create(void)
-{
-	int i;
-	ht_t *hashtable = malloc(sizeof(ht_t) * 1);
-
-	hashtable->entries = malloc(sizeof(entry_t *) * TABLE_SIZE);
-
-	for (i = 0; i < TABLE_SIZE; i++)
-	{
-		hashtable->entries[i] = NULL;
-	}
-
-	return (hashtable);
-}
-
-/**
- * ht_pair - Set the key and value of the table
- * @key: key data
- * @value: Value to be saved
- * Return: Register in the hashtable
- */
-entry_t *ht_pair(const uli key, const uli value)
-{
-	entry_t *entry = malloc(sizeof(entry) * 1);
-
-	entry->key = key;
-	entry->value = value;
-	entry->next = NULL;
-
-	return (entry);
-}
-
-/**
- * ht_set - Set data in the hash table
- * @hashtable: All the hash table
- * @key: key data
- * @value: Value to be saved
- */
-void ht_set(ht_t *hashtable, const uli key,  const uli value)
-{
-	uli slot = hash(key);
-	entry_t *entry = hashtable->entries[slot];
-	entry_t *prev;
-
-	if (entry == NULL)
-	{
-		hashtable->entries[slot] = ht_pair(key, value);
-		return;
-	}
-
-	while (entry != NULL)
-	{
-		if (entry->key == key)
-		{
-			entry->value = value;
-			return;
-		}
-
-		prev = entry;
-		entry = prev->next;
-	}
-
-	prev->next = ht_pair(key, value);
-}
-
-/**
- * ht_get - Get a entry in the hash table
- * @hashtable: hash table data
- * @key: Key data
- * Return: Value of associated to the key
- */
-uli ht_get(ht_t *hashtable, const uli key)
-{
-	uli slot = hash(key);
-
-	entry_t *entry = hashtable->entries[slot];
-
-	if (entry == NULL)
+	if (head == NULL || head->next == NULL)
 		return (0);
 
-	while (entry != NULL)
-	{
-		if (entry->key == key)
-			return (entry->value);
+	tortoise = head->next;
+	hare = (head->next)->next;
 
-		entry = entry->next;
+	while (hare)
+	{
+		if (tortoise == hare)
+		{
+			tortoise = head;
+			while (tortoise != hare)
+			{
+				nodes++;
+				tortoise = tortoise->next;
+				hare = hare->next;
+			}
+
+			tortoise = tortoise->next;
+			while (tortoise != hare)
+			{
+				nodes++;
+				tortoise = tortoise->next;
+			}
+
+			return (nodes);
+		}
+
+		tortoise = tortoise->next;
+		hare = (hare->next)->next;
 	}
 
 	return (0);
+}
+
+/**
+ * print_listint_safe - Prints a listint_t list safely.
+ * @head: A pointer to the head of the listint_t list.
+ *
+ * Return: The number of nodes in the list.
+ */
+size_t print_listint_safe(const listint_t *head)
+{
+	size_t nodes, index = 0;
+
+	nodes = looped_listint_len(head);
+
+	if (nodes == 0)
+	{
+		for (; head != NULL; nodes++)
+		{
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
+		}
+	}
+
+	else
+	{
+		for (index = 0; index < nodes; index++)
+		{
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
+		}
+
+		printf("-> [%p] %d\n", (void *)head, head->n);
+	}
+
+	return (nodes);
 }
